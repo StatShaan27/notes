@@ -13,11 +13,12 @@
             text-align: center;
         }
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
             color: white;
             padding: 20px;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
         .container {
             max-width: 800px;
@@ -31,32 +32,73 @@
             color: #2c3e50;
         }
         a {
-            display: block;
+            display: inline-block;
             text-decoration: none;
             color: #3498db;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 10px;
             font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         a:hover {
-            color: #2980b9;
+            background: #3498db;
+            color: white;
+        }
+        #stat-joke {
+            display: block;
+            margin: 20px auto;
+            width: 70%;
+            max-width: 400px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        #stat-joke:hover {
+            transform: scale(1.05);
+        }
+        .greeting {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
     <a href="index.html">🏠 Home</a>
     <header>Welcome to My Study Hub</header>
+    
     <div class="container">
+        <p class="greeting" id="greeting-text"></p>
         <p>Here you will find notes, books, problem sets, and personal writings.</p>
-        
+
         <a href="about.html">About Me</a>
-        
+
         <h2>About different subjects taught at ISI</h2>
         <a href="vm.html">VM (Vector Matrices)</a>
         <a href="prob.html">PT (Probability Theory)</a>
         <a href="sm.html">SM (Statistical Methods)</a>
-        <img src="image.png" alt="Stat Joke">
+
+        <h2>Assignments/Projects</h2>
+        <a href="assignments.html">Assignments & Projects at ISI Kolkata</a>
+
+        <img src="image.png" id="stat-joke" alt="Stat Joke">
     </div>
+
+    <script>
+        function updateGreeting() {
+            let greetingText = document.getElementById("greeting-text");
+            let hour = new Date().getHours();
+            if (hour < 12) {
+                greetingText.innerText = "Good Morning! A fresh day to solve fresh problems!";
+            } else if (hour < 18) {
+                greetingText.innerText = "Good Afternoon! Keep pushing forward!";
+            } else {
+                greetingText.innerText = "Good Evening! Time to reflect and relax!";
+            }
+        }
+        updateGreeting();
+    </script>
 </body>
-    
 </html>
