@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments & Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .content {
+            margin-top: 20px;
+            display: none;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+    </style>
+    <script>
+        function showContent() {
+            var year = document.getElementById("yearSelect").value;
+            document.querySelectorAll(".content").forEach(el => el.style.display = "none");
+            if (year) {
+                document.getElementById(year).style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Assignments & Projects at ISI Kolkata</h2>
+        <label for="yearSelect">Select Year:</label>
+        <select id="yearSelect" onchange="showContent()">
+            <option value="">-- Select --</option>
+            <option value="year1">2024-2025: 1st Year</option>
+            <option value="year2">2025-2026: 2nd Year</option>
+        </select>
+
+        <div id="year1" class="content">
+            <h3>Probability Assignments</h3>
+            <a href="prob_assignments.html">Assignment Problems</a>
+            <a href="prob_solutions.html">Solutions</a>
+            
+            <h3>Statistics Assignments</h3>
+            <a href="stat_before_midsem.html">Before Midsem, SM-II</a>
+            <a href="stat_after_midsem.html">After Midsem, SM-II</a>
+            
+            <h3>Probability Projects</h3>
+            <a href="prob_project1.html">Project 1</a>
+            <a href="prob_project2.html">Project 2</a>
+            <a href="prob_project3.html">Project 3</a>
+        </div>
+
+        <div id="year2" class="content">
+            <p>No assignments/projects yet.</p>
+        </div>
+    </div>
+</body>
+</html>
