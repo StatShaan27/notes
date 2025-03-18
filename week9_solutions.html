@@ -41,6 +41,32 @@
         a:hover {
             color: #2980b9;
         }
+        .code-block {
+            position: relative;
+            background: #282c34;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .copy-btn:hover {
+            background: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +76,7 @@
     <h2>Question 1</h2>
     <img src="W9Q1.png" id="Question1 copy" alt="Question1 copy">
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 library(lmreg)
 data("worldpop")
 x0<-1990
@@ -70,6 +97,7 @@ summary(lm1)$r.squared
 
     <h2>Question 3</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 library(lmreg)
 data("worldpop")
 x0<-1990
@@ -87,6 +115,7 @@ coefficients(lm2)
     
     <h2>Question 4</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 sigma(lm1)
 sigma(lm2)
 summary(lm1)$r.squared
@@ -102,6 +131,7 @@ summary(lm2)$r.squared
     
     <h2>Question 7</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 library(lmreg)
 data("worldpop")
 x0<-1990
@@ -119,6 +149,7 @@ coefficients(lm3)
     
     <h2>Question 8</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 sigma(lm1)
 sigma(lm2)
 sigma(lm3)
@@ -130,6 +161,7 @@ summary(lm3)$r.squared
     
     <h2>Question 9</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 summary(lm2)
 summary(lm3)
     </pre>
@@ -137,6 +169,7 @@ summary(lm3)
     
     <h2>Question 10</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 data(leprosy)
 head(leprosy)
 lm4<- lm(post ~ pre+ treatment, data = leprosy)
@@ -154,6 +187,7 @@ F0
     
     <h2>Question 11</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 leprosy$Ai <- ifelse(leprosy$treatment == "A", 1, 0)
 leprosy$Di <- ifelse(leprosy$treatment == "D", 1, 0)
 lm5<- lm(post ~ pre+ Ai+Di, data = leprosy)
@@ -167,9 +201,11 @@ D
 F
     </pre>
     <img src="W9Q11.png" id="Question11 copy" alt="Question11 copy">
+    
 
     <h2>Question 12</h2>
     <pre class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 leprosy$Ai <- ifelse(leprosy$treatment == "A", 1, 0)
 leprosy$Fi <- ifelse(leprosy$treatment == "F", 1, 0)
 lm6<- lm(post ~ pre+ Ai+Fi, data = leprosy)
@@ -186,6 +222,18 @@ head(cbind(D0,D,D2))
 head(cbind(F0,F,F2))
     </pre>
     <img src="W9Q12.png" id="Question12 copy" alt="Question12 copy">
-
+     <script>
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const textArea = document.createElement("textarea");
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            button.textContent = "Copied!";
+            setTimeout(() => button.textContent = "Copy", 2000);
+        }
+    </script>
 </body>
 </html>
