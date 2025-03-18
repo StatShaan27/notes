@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Methods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">🏠 Home</a>
+    <h1>Week-9 Statistics Assignment Solutions</h1>
+    
+    <h2>Question 1</h2>
+    <p>For the modeling, see copy.</p>
+    <pre class="code-block">
+library(lmreg)
+data("worldpop")
+x0<-1990
+y<- worldpop$Pop.billion
+x<-worldpop$Year
+x1<-rep(0,length(x))
+x1[x>x0]=1
+x4<-(1-x1)(x-x0)
+x5<-x1(x-x0)
+lm1<-lm(Pop.billion~x4+x5,data=worldpop)
+coefficients(lm1)
+sigma(lm1)
+summary(lm1)$r.squared
+    </pre>
+    <div class="image-container"> <p>[Image Placeholder]</p> </div>
+    
+    <h2>Question 2</h2>
+    <p>See copy.</p>
+    
+    <h2>Question 3</h2>
+    <pre class="code-block">
+library(lmreg)
+data("worldpop")
+x0<-1990
+y<- worldpop$Pop.billion
+x<-worldpop$Year
+x1<-rep(0,length(x))
+x1[x>x0]=1
+x4<-(1-x1)(x-x0)
+x5<-x1(x-x0)
+x6<-(1-x1)(x^2-(x0)^2)
+x7<-x1(x^2-(x0)^2)
+lm2<-lm(Pop.billion~x4+x5+x6+x7,data=worldpop)
+coefficients(lm2)
+    </pre>
+    <p>Interpretation: (See board image)</p>
+    <div class="image-container"> <p>[Image Placeholder]</p> </div>
+    
+    <h2>Question 4</h2>
+    <pre class="code-block">
+sigma(lm1)
+sigma(lm2)
+summary(lm1)$r.squared
+summary(lm2)$r.squared
+    </pre>
+    
+    <h2>Question 5</h2>
+    <p>The piecewise model is considered adequate when the coefficients of x² are low. For example, in Q3, they are x6 and x7 and are of the order 10⁻⁴.</p>
+    
+    <h2>Question 6</h2>
+    <p>See copy.</p>
+    
+    <h2>Question 7</h2>
+    <pre class="code-block">
+library(lmreg)
+data("worldpop")
+x0<-1990
+y<- worldpop$Pop.billion
+x<-worldpop$Year
+x1<-rep(0,length(x))
+x1[x>x0]=1
+x8<-x
+x9<-x*((1-x1)x+2(x0)(x1))
+x10<-x1(x-x0)^2
+lm3<-lm(y~x8+x9+x10,data=worldpop)
+coefficients(lm3)
+    </pre>
+    <p>Interpretation similar to Q3.</p>
+    
+    <h2>Question 8</h2>
+    <pre class="code-block">
+sigma(lm1)
+sigma(lm2)
+sigma(lm3)
+summary(lm1)$r.squared
+summary(lm2)$r.squared
+summary(lm3)$r.squared
+    </pre>
+    <p>lm2's R² is lower than lm3's, but the standard deviation of error in lm3 is more than lm2. So assuming that the derivative is continuous is an unfavorable restriction.</p>
+    
+    <h2>Question 9</h2>
+    <pre class="code-block">
+summary(lm2)
+summary(lm3)
+    </pre>
+    <p>For continuity condition, a1 - b1 = 2 * 1990 * (b2 - a2)</p>
+    
+    <h2>Question 10</h2>
+    <pre class="code-block">
+data(leprosy)
+head(leprosy)
+lm4<- lm(post ~ pre+ treatment, data = leprosy)
+summary(lm4)
+co<-coef(lm4)
+D0<-co[1]+co[3]+co[2]*x
+F0<-co[1]+co[4]+co[2]*x
+A0<-co[1]+co[2]*x
+A0
+D0
+F0
+    </pre>
+    
+    <h2>Question 11</h2>
+    <pre class="code-block">
+leprosy$Ai <- ifelse(leprosy$treatment == "A", 1, 0)
+leprosy$Di <- ifelse(leprosy$treatment == "D", 1, 0)
+lm5<- lm(post ~ pre+ Ai+Di, data = leprosy)
+summary(lm5)
+co1<-coef(lm5)
+A<-co1[1]+co1[3]+co1[2]*x
+D<-co1[1]+co1[4]+co1[2]*x
+F<-co1[1]+co1[2]*x
+A
+D
+F
+    </pre>
+    
+    <h2>Question 12</h2>
+    <pre class="code-block">
+leprosy$Ai <- ifelse(leprosy$treatment == "A", 1, 0)
+leprosy$Fi <- ifelse(leprosy$treatment == "F", 1, 0)
+lm6<- lm(post ~ pre+ Ai+Fi, data = leprosy)
+summary(lm6)
+co2<-coef(lm6)
+A2<-co2[1]+co2[3]+co2[2]*x
+F2<-co2[1]+co2[4]+co2[2]*x
+D2<-co2[1]+co2[2]*x
+A2
+D2
+F2
+head(cbind(A0,A,A2))
+head(cbind(D0,D,D2))
+head(cbind(F0,F,F2))
+    </pre>
+</body>
+</html>
