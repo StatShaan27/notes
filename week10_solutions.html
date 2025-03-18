@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week-10 Statistics Assignment Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+        .code-block {
+            position: relative;
+            background: #282c34;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">🏠 Home</a>
+    <h1>Week-10 Statistics Assignment Solutions</h1>
+    
+    <h2>Question 1</h2>
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>library(lmreg)
+data("leprosy")
+lm1<-lm(post~treatment,data=leprosy)
+summary(lm1)
+y1<-lm1$residuals
+x<- leprosy$pre
+y<-leprosy$post
+plot(x,y1,xlab="pre-treatment scores",ylab = "residuals on post-treatment scores",main = "Correlation plot 1")
+</pre>
+    </div>
+    
+    <h2>Question 2</h2>
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>library(lmreg)
+data("leprosy")
+lm2<-lm(pre~treatment,data=leprosy)
+summary(lm2)
+y2<-lm2$residuals
+plot(y2,y1,xlab="residuals on pre-treatment scores",ylab = "residuals on post-treatment scores",main = "Partial Correlation plot ")
+</pre>
+    </div>
+
+    <h2>Question 3</h2>
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>cor(y1,y2)
+</pre>
+    </div>
+
+    <h2>Question 4</h2>
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>cor(x,y)
+</pre>
+    </div>
+
+    <h2>Comment</h2>
+    <p>Yes, in most cases, the partial correlation (controlling for treatment) will be lower than the Pearson correlation (simple correlation between pre- and post-treatment scores).</p>
+    
+    <h2>Question 5</h2>
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>lm3<- lm(y1~y2,data=leprosy)
+summary(lm3)
+co1<-coef(lm3)
+abline(co1[1],co1[2])
+</pre>
+    </div>
+    
+    <h2>Comment</h2>
+    <p>co1[1] is the intercept of the partial regression line<br>
+    co1[2] is the slope</p>
+    
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const textArea = document.createElement("textarea");
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            button.textContent = "Copied!";
+            setTimeout(() => button.textContent = "Copy", 2000);
+        }
+    </script>
+</body>
+</html>
