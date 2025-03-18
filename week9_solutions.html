@@ -48,7 +48,7 @@
     <h1>Week-9 Statistics Assignment Solutions</h1>
     
     <h2>Question 1</h2>
-    <p>For the modeling, see copy.</p>
+    <img src="W9Q1.png" id="Question1 copy" alt="Question1 copy">
     <pre class="code-block">
 library(lmreg)
 data("worldpop")
@@ -64,11 +64,10 @@ coefficients(lm1)
 sigma(lm1)
 summary(lm1)$r.squared
     </pre>
-    <div class="image-container"> <p>[Image Placeholder]</p> </div>
     
     <h2>Question 2</h2>
-    <p>See copy.</p>
-    
+    <img src="W9Q2.png" id="Question2 copy" alt="Question2 copy">
+
     <h2>Question 3</h2>
     <pre class="code-block">
 library(lmreg)
@@ -84,9 +83,7 @@ x6<-(1-x1)(x^2-(x0)^2)
 x7<-x1(x^2-(x0)^2)
 lm2<-lm(Pop.billion~x4+x5+x6+x7,data=worldpop)
 coefficients(lm2)
-    </pre>
-    <p>Interpretation: (See board image)</p>
-    <div class="image-container"> <p>[Image Placeholder]</p> </div>
+    </pre><img src="W9Q3.png" id="Interpretation of coefficients" alt="Interpretation of coefficients">
     
     <h2>Question 4</h2>
     <pre class="code-block">
@@ -100,7 +97,8 @@ summary(lm2)$r.squared
     <p>The piecewise model is considered adequate when the coefficients of x² are low. For example, in Q3, they are x6 and x7 and are of the order 10⁻⁴.</p>
     
     <h2>Question 6</h2>
-    <p>See copy.</p>
+    <img src="W9Q6.png" id="Question6 copy" alt="Question6 copy">
+
     
     <h2>Question 7</h2>
     <pre class="code-block">
@@ -151,6 +149,8 @@ A0
 D0
 F0
     </pre>
+    <img src="W9Q10.png" id="Question10 copy" alt="Question10 copy">
+
     
     <h2>Question 11</h2>
     <pre class="code-block">
@@ -166,7 +166,8 @@ A
 D
 F
     </pre>
-    
+    <img src="W9Q11.png" id="Question11 copy" alt="Question11 copy">
+
     <h2>Question 12</h2>
     <pre class="code-block">
 leprosy$Ai <- ifelse(leprosy$treatment == "A", 1, 0)
@@ -184,5 +185,7 @@ head(cbind(A0,A,A2))
 head(cbind(D0,D,D2))
 head(cbind(F0,F,F2))
     </pre>
+    <img src="W9Q12.png" id="Question12 copy" alt="Question12 copy">
+
 </body>
 </html>
